@@ -17,15 +17,14 @@ class Level {
   private var comboMultiplier = 0
   
   init(filename: String) {
-    // 1
     guard let levelData = LevelData.loadFrom(file: filename) else { return }
-    // 2
+    
     let tilesArray = levelData.tiles
-    // 3
+    
     for (row, rowArray) in tilesArray.enumerated() {
-      // 4
+    
       let tileRow = numRows - row - 1
-      // 5
+      
       for (column, value) in rowArray.enumerated() {
         if value == 1 {
           tiles[column, tileRow] = Tile()
@@ -60,7 +59,6 @@ class Level {
   private func createInitialCookies() -> Set<Cookie> {
     var set: Set<Cookie> = []
     
-    // 1
     for row in 0..<numRows {
       for column in 0..<numColumns {
         if tiles[column, row] != nil {
@@ -78,11 +76,9 @@ class Level {
               cookies[column, row - 1]?.cookieType == cookieType &&
               cookies[column, row - 2]?.cookieType == cookieType)
           
-          // 3
           let cookie = Cookie(column: column, row: row, cookieType: cookieType)
           cookies[column, row] = cookie
           
-          // 4
           set.insert(cookie)
         }
       }

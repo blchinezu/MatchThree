@@ -86,7 +86,7 @@ class GameScene: SKScene {
   }
   
   func addTiles() {
-    // 1
+    
     for row in 0..<numRows {
       for column in 0..<numColumns {
         if level.tileAt(column: column, row: row) != nil {
@@ -98,7 +98,6 @@ class GameScene: SKScene {
       }
     }
     
-    // 2
     for row in 0...numRows {
       for column in 0...numColumns {
         
@@ -137,16 +136,16 @@ class GameScene: SKScene {
   }
   
   private func trySwap(horizontalDelta: Int, verticalDelta: Int) {
-    // 1
+    
     let toColumn = swipeFromColumn! + horizontalDelta
     let toRow = swipeFromRow! + verticalDelta
-    // 2
+    
     guard toColumn >= 0 && toColumn < numColumns else { return }
     guard toRow >= 0 && toRow < numRows else { return }
-    // 3
+    
     if let toCookie = level.cookie(atColumn: toColumn, row: toRow),
       let fromCookie = level.cookie(atColumn: swipeFromColumn!, row: swipeFromRow!) {
-      // 4
+    
       if let handler = swipeHandler {
         let swap = Swap(cookieA: fromCookie, cookieB: toCookie)
         handler(swap)
@@ -155,15 +154,14 @@ class GameScene: SKScene {
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    // 1
+    
     guard let touch = touches.first else { return }
     let location = touch.location(in: cookiesLayer)
-    // 2
+    
     let (success, column, row) = convertPoint(location)
     if success {
-      // 3
+    
       if let cookie = level.cookie(atColumn: column, row: row) {
-        // 4
         swipeFromColumn = column
         swipeFromRow = row
         
@@ -174,17 +172,14 @@ class GameScene: SKScene {
   }
   
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    // 1
     guard swipeFromColumn != nil else { return }
     
-    // 2
     guard let touch = touches.first else { return }
     let location = touch.location(in: cookiesLayer)
     
     let (success, column, row) = convertPoint(location)
     if success {
       
-      // 3
       var horizontalDelta = 0, verticalDelta = 0
       if column < swipeFromColumn! {          // swipe left
         horizontalDelta = -1
@@ -196,14 +191,12 @@ class GameScene: SKScene {
         verticalDelta = 1
       }
       
-      // 4
       if horizontalDelta != 0 || verticalDelta != 0 {
         trySwap(horizontalDelta: horizontalDelta, verticalDelta: verticalDelta)
         
         // Remove highlight from cookie
         hideSelectionIndicator()
         
-        // 5
         swipeFromColumn = nil
       }
     }
