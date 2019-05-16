@@ -30,6 +30,7 @@ class GameScene: SKScene {
     
     anchorPoint = CGPoint(x: 0.5, y: 0.5)
     
+    // add the background image to the scene
     let background = SKSpriteNode(imageNamed: "Background")
     background.size = size
     addChild(background)

@@ -11,7 +11,8 @@ enum CookieType: Int {
       "Danish",
       "Donut",
       "Macaroon",
-      "SugarCookie"]
+      "SugarCookie"
+    ]
     
     return spriteNames[rawValue - 1]
   }

@@ -7,7 +7,6 @@ let numLevels = 4 // Excluding level 0
 class Level {
   
   private var tiles = Array2D<Tile>(columns: numColumns, rows: numRows)
-  
   private var cookies = Array2D<Cookie>(columns: numColumns, rows: numRows)
   
   private var possibleSwaps: Set<Swap> = []
@@ -54,7 +53,6 @@ class Level {
     repeat {
       set = createInitialCookies()
       detectPossibleSwaps()
-      print("possible swaps: \(possibleSwaps)")
     } while possibleSwaps.count == 0
     
     return set

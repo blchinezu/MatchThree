@@ -40,7 +40,7 @@ class GameViewController: UIViewController {
     scene = GameScene(size: skView.bounds.size)
     scene.scaleMode = .aspectFill
     
-    // Setup the level.
+    // Setup the level
     level = Level(filename: "Level_\(levelNumber)")
     scene.level = level
     
@@ -56,10 +56,10 @@ class GameViewController: UIViewController {
     // Hide the shuffle button when starting the game
     shuffleButton.isHidden = true
     
-    // Present the scene.
+    // Present the scene
     skView.presentScene(scene)
     
-    // Start the game.
+    // Start the game
     beginGame()
   }
   
